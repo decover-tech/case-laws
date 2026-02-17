@@ -392,6 +392,18 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Robo
           <h3>Doctrine</h3>
           <button class="clear-btn" onclick="clearFilters('doctrine')">Clear</button>
           <div id="doctrineFilters"></div>
+
+          <h3>Panel Judge</h3>
+          <button class="clear-btn" onclick="clearFilters('judge')">Clear</button>
+          <div id="judgeFilters"></div>
+
+          <h3>Jurisdiction</h3>
+          <button class="clear-btn" onclick="clearFilters('jurisdiction')">Clear</button>
+          <div id="jurisdictionFilters"></div>
+
+          <h3>Statutes Cited</h3>
+          <button class="clear-btn" onclick="clearFilters('statute')">Clear</button>
+          <div id="statuteFilters"></div>
         </div>
         <div class="main">
           <div id="nlBanner" class="nl-banner"></div>
@@ -451,7 +463,8 @@ const CASES = [
     issues: ["Whether defendant was a resident of D.C. for purposes of attachment", "Whether plaintiff met burden of proving non-residence"],
     doctrines: ["Burden of Proof", "Residency Determination"], citations: 19,
     damages_sought: "$1,974", damages_awarded: null, confidence: 0.98,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8152417, name: "Rogers v. District of Columbia", plaintiff: "Rogers", defendant: "District of Columbia",
@@ -464,7 +477,8 @@ const CASES = [
     issues: ["Constitutionality of burden-shifting statute", "Admissibility of confession after arrest", "Right to jury trial for vagrancy"],
     doctrines: ["Burden of Proof", "Constitutional Due Process", "Right to Jury Trial"], citations: 16,
     damages_sought: null, damages_awarded: null, confidence: 1.0,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: ["D.C. Code \u00a7 22-3302"], jurisdiction: "District of Columbia"
   },
   {
     id: 8152449, name: "Morris v. District of Columbia", plaintiff: "Morris", defendant: "District of Columbia",
@@ -477,7 +491,8 @@ const CASES = [
     issues: ["Whether a taxicab constitutes a 'public place'", "Whether remarks constituted indecent words under statute"],
     doctrines: ["Statutory Interpretation", "Public Place Doctrine"], citations: 13,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: ["D.C. Code \u00a7 22-1121"], jurisdiction: "District of Columbia"
   },
   {
     id: 8152527, name: "Fliss v. Reliable Construction & Realty Co.", plaintiff: "Fliss", defendant: "Reliable Construction & Realty Co.",
@@ -490,7 +505,8 @@ const CASES = [
     issues: ["Implied warranty in new home construction", "Causation with multiple potential causes", "Burden of proof for construction defects"],
     doctrines: ["Implied Warranty", "Causation", "Burden of Proof"], citations: 4,
     damages_sought: "$225", damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8152653, name: "Raaen v. Southern Hotel Supply Co.", plaintiff: "Raaen", defendant: "Southern Hotel Supply Co.",
@@ -503,7 +519,8 @@ const CASES = [
     issues: ["Contributory negligence in auto accident", "Right-of-way at stop-sign intersection", "Standard of care entering from inferior right of way"],
     doctrines: ["Contributory Negligence", "Right of Way", "Standard of Care"], citations: 4,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: true
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: true,
+    statutes: ["Article 6, Section 28b"], jurisdiction: "District of Columbia"
   },
   {
     id: 8152731, name: "Knott v. Jackson", plaintiff: "Knott", defendant: "Jackson",
@@ -516,7 +533,8 @@ const CASES = [
     issues: ["Applicability of Loan Shark Law to secured loans over $200", "Statute of limitations for usury recovery", "Joint action requirements"],
     doctrines: ["Statutory Interpretation", "Statute of Limitations", "Usury"], citations: 29,
     damages_sought: null, damages_awarded: "$330.82", confidence: 0.92,
-    trial_type: "jury", has_dissent: false, rehearing: true, pro_se: false, is_pi: false
+    trial_type: "jury", has_dissent: false, rehearing: true, pro_se: false, is_pi: false,
+    statutes: ["D.C. Code \u00a7 28-3301", "Section 5198"], jurisdiction: "District of Columbia"
   },
   {
     id: 8152778, name: "Lloyd v. United States Fidelity & Guaranty Co.", plaintiff: "Lloyd", defendant: "U.S. Fidelity & Guaranty Co.",
@@ -529,7 +547,8 @@ const CASES = [
     issues: ["Full faith and credit to sister-state judgment", "Surety's right to recover from principal", "Pro se compliance with appellate rules"],
     doctrines: ["Full Faith and Credit", "Collateral Attack", "Pro Se Procedure"], citations: 7,
     damages_sought: "$97.85", damages_awarded: "$97.85", confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: true, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: true, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8152821, name: "United States v. Reed", plaintiff: "United States", defendant: "Reed",
@@ -542,7 +561,8 @@ const CASES = [
     issues: ["Government recovery of attorney's fees via salaried attorneys", "FHA fund payments to DOJ as recoverable fees"],
     doctrines: ["Attorney Fee Recovery", "Government Litigation Standing"], citations: 14,
     damages_sought: null, damages_awarded: null, confidence: 0.9,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: ["48 Stat. 1246", "Federal Housing Act"], jurisdiction: "District of Columbia"
   },
   {
     id: 8152863, name: "Smith & Gottlieb, Inc. v. Cheatham", plaintiff: "Smith & Gottlieb, Inc.", defendant: "Cheatham",
@@ -555,7 +575,8 @@ const CASES = [
     issues: ["Res judicata — whether prior judgment bars subsequent damages from same breach", "Entire vs. divisible contract for damages purposes"],
     doctrines: ["Res Judicata", "Divisible Contract", "Continuing Breach"], citations: 22,
     damages_sought: "$35.72", damages_awarded: "$17.36", confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: false, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8152930, name: "Washington Nat. Ins. v. Stanton", plaintiff: "Washington Nat. Ins.", defendant: "Stanton",
@@ -568,7 +589,8 @@ const CASES = [
     issues: ["Insurer's burden to prove insured's knowledge of serious disease", "Conflicting medical testimony as jury question", "D.C. Code § 35-1002 burden of proof"],
     doctrines: ["Burden of Proof", "Jury Question / Directed Verdict", "Insurance Policy Interpretation"], citations: 23,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "jury", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "jury", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: ["D.C. Code \u00a7 35-1002"], jurisdiction: "District of Columbia"
   },
   {
     id: 8152964, name: "Taylor v. Yellow Cab Co.", plaintiff: "Taylor", defendant: "Yellow Cab Co.",
@@ -581,7 +603,8 @@ const CASES = [
     issues: ["Abuse of discretion in denying continuance", "Proceeding with trial in absence of plaintiff and counsel"],
     doctrines: ["Abuse of Discretion", "Right to Continuance", "Due Process in Civil Trials"], citations: 29,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "jury", has_dissent: true, rehearing: true, pro_se: false, is_pi: false
+    trial_type: "jury", has_dissent: true, rehearing: true, pro_se: false, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8155821, name: "Herndon v. Higdon", plaintiff: "Herndon", defendant: "Higdon",
@@ -594,7 +617,8 @@ const CASES = [
     issues: ["Defendant's negligence in failing to yield right of way", "Contributory negligence defense — speed as proximate cause", "Proximate causation in intersection collisions"],
     doctrines: ["Contributory Negligence", "Proximate Cause", "Right of Way"], citations: 34,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: true
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: true,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8155944, name: "Zweig v. Schwartz", plaintiff: "Zweig", defendant: "Schwartz",
@@ -607,7 +631,8 @@ const CASES = [
     issues: ["Void vs. voidable conditional sale by fraud", "Recording requirement for conditional sales under D.C. Code", "Bona fide purchaser defense"],
     doctrines: ["Void vs. Voidable", "Recording Acts", "Bona Fide Purchaser"], citations: 52,
     damages_sought: "$314", damages_awarded: "$314", confidence: 0.92,
-    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: false, is_pi: false,
+    statutes: ["D.C. Code \u00a7 28-2103"], jurisdiction: "District of Columbia"
   },
   {
     id: 8156063, name: "MacDonald v. Capital Transit Co.", plaintiff: "MacDonald (Emmco Ins.)", defendant: "Capital Transit Co.",
@@ -620,7 +645,8 @@ const CASES = [
     issues: ["Streetcar operator's duty of care and lookout", "Standard of review for bench trial factual findings", "Rights of streetcar companies sharing roadway"],
     doctrines: ["Duty of Care", "Standard of Review", "Common Carrier Liability"], citations: 10,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: true
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: true,
+    statutes: ["56 Stat. 196"], jurisdiction: "District of Columbia"
   },
   {
     id: 8156126, name: "Mee v. Marlyn Apartment Co.", plaintiff: "Mee", defendant: "Marlyn Apartment Co.",
@@ -633,7 +659,8 @@ const CASES = [
     issues: ["Whether oral pet permission was revocable", "Whether pet-keeping is a 'privilege or facility' under Rent Act", "Parol evidence rule and lease modifications"],
     doctrines: ["Parol Evidence Rule", "Waiver of Lease Terms", "Emergency Rent Control"], citations: 11,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: ["D.C. Emergency Rent Act"], jurisdiction: "District of Columbia"
   },
   {
     id: 8156414, name: "Lady v. Realty Associates, Inc.", plaintiff: "Lady", defendant: "Realty Associates, Inc.",
@@ -646,7 +673,8 @@ const CASES = [
     issues: ["Whether broker was procuring cause of sale", "Whether deposit return constituted abandonment", "Fraud to defeat broker's commission"],
     doctrines: ["Procuring Cause", "Fraud", "Broker Commission Rights"], citations: 6,
     damages_sought: "$462.50", damages_awarded: "$462.50", confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8156655, name: "Provident Life Ins. Co. v. Grant", plaintiff: "Provident Life Ins.", defendant: "Grant",
@@ -659,7 +687,8 @@ const CASES = [
     issues: ["Waiver of policy reinstatement clause", "Sufficiency of evidence for waiver finding", "Agent's authority to waive policy conditions"],
     doctrines: ["Waiver", "Insurance Agent Authority", "Estoppel"], citations: 3,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: false, rehearing: true, pro_se: false, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8156741, name: "Hamilton v. United States", plaintiff: "Hamilton", defendant: "United States",
@@ -672,7 +701,8 @@ const CASES = [
     issues: ["Whether inadmissible identification testimony can be cured", "Hearsay identification as admission by silence", "Prejudicial evidence in bench trial"],
     doctrines: ["Inadmissible Evidence / Cure", "Admission by Silence", "Prejudicial Error"], citations: 50,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "bench", has_dissent: true, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: true, rehearing: false, pro_se: false, is_pi: false,
+    statutes: [], jurisdiction: "District of Columbia"
   },
   {
     id: 8156805, name: "Penwell v. District of Columbia", plaintiff: "Penwell", defendant: "District of Columbia",
@@ -685,7 +715,8 @@ const CASES = [
     issues: ["Fourth Amendment — search and seizure from public alley", "Erroneous evidence admission cured by jury instruction", "Vehicle observation from public space as lawful search"],
     doctrines: ["Fourth Amendment", "Harmless Error", "Plain View Doctrine"], citations: 35,
     damages_sought: null, damages_awarded: null, confidence: 0.95,
-    trial_type: "jury", has_dissent: false, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "jury", has_dissent: false, rehearing: false, pro_se: false, is_pi: false,
+    statutes: ["D.C. Code \u00a7 40-602", "D.C. Code \u00a7 40-610"], jurisdiction: "District of Columbia"
   },
   {
     id: 8153082, name: "Ray v. Bruce", plaintiff: "Ray", defendant: "Bruce",
@@ -698,7 +729,8 @@ const CASES = [
     issues: ["Appealability of orders denying motions to vacate", "Garnishee's remedies after default", "Procedural requirements for timely appeal"],
     doctrines: ["Appealability", "Default Judgment", "Garnishment Procedure"], citations: 63,
     damages_sought: "$350", damages_awarded: null, confidence: 0.9,
-    trial_type: "bench", has_dissent: true, rehearing: false, pro_se: false, is_pi: false
+    trial_type: "bench", has_dissent: true, rehearing: false, pro_se: false, is_pi: false,
+    statutes: ["31 Stat. 1263"], jurisdiction: "District of Columbia"
   }
 ];
 
@@ -1081,6 +1113,9 @@ const ALL_CATEGORIES = [...new Set(CASES.flatMap(c => c.categories))].sort();
 const ALL_OUTCOMES = [...new Set(CASES.map(c => c.outcome))].sort();
 const ALL_AUTHORS = [...new Set(CASES.map(c => c.author))].sort();
 const ALL_DOCTRINES = [...new Set(CASES.flatMap(c => c.doctrines))].sort();
+const ALL_JUDGES = [...new Set(CASES.flatMap(c => c.judges.split(', ')))].sort();
+const ALL_JURISDICTIONS = [...new Set(CASES.map(c => c.jurisdiction || 'District of Columbia'))].sort();
+const ALL_STATUTES = [...new Set(CASES.flatMap(c => c.statutes || []))].sort();
 
 // ===== NL QUERY RESPONSES =====
 const NL_RESPONSES = {
@@ -1178,6 +1213,9 @@ function init() {
   renderOutcomeFilters();
   renderAuthorFilters();
   renderDoctrineFilters();
+  renderJudgeFilters();
+  renderJurisdictionFilters();
+  renderStatuteFilters();
   applyFilters();
 
   document.getElementById('searchInput').addEventListener('keydown', e => {
@@ -1220,6 +1258,30 @@ function renderDoctrineFilters() {
   ).join('');
 }
 
+function renderJudgeFilters() {
+  const counts = {};
+  CASES.forEach(c => c.judges.split(', ').forEach(j => counts[j] = (counts[j]||0) + 1));
+  document.getElementById('judgeFilters').innerHTML = ALL_JUDGES.map(j =>
+    `<div class="filter-group"><label><input type="checkbox" data-filter="judge" value="${j}" onchange="applyFilters()"> ${j} <span class="filter-count">${counts[j]||0}</span></label></div>`
+  ).join('');
+}
+
+function renderJurisdictionFilters() {
+  const counts = {};
+  CASES.forEach(c => counts[c.jurisdiction || 'District of Columbia'] = (counts[c.jurisdiction || 'District of Columbia']||0) + 1);
+  document.getElementById('jurisdictionFilters').innerHTML = ALL_JURISDICTIONS.map(j =>
+    `<div class="filter-group"><label><input type="checkbox" data-filter="jurisdiction" value="${j}" onchange="applyFilters()"> ${j} <span class="filter-count">${counts[j]||0}</span></label></div>`
+  ).join('');
+}
+
+function renderStatuteFilters() {
+  const counts = {};
+  CASES.forEach(c => (c.statutes || []).forEach(s => counts[s] = (counts[s]||0) + 1));
+  document.getElementById('statuteFilters').innerHTML = ALL_STATUTES.map(s =>
+    `<div class="filter-group"><label><input type="checkbox" data-filter="statute" value="${s}" onchange="applyFilters()"> ${s} <span class="filter-count">${counts[s]||0}</span></label></div>`
+  ).join('');
+}
+
 function getChecked(filterName) {
   return [...document.querySelectorAll(`input[data-filter="${filterName}"]:checked`)].map(i => i.value);
 }
@@ -1240,6 +1302,9 @@ function applyFilters() {
   const authors = getChecked('author');
   const doctrines = getChecked('doctrine');
   const features = getChecked('features');
+  const judges = getChecked('judge');
+  const jurisdictions = getChecked('jurisdiction');
+  const statutes = getChecked('statute');
   const sort = document.getElementById('sortSelect').value;
 
   let filtered = CASES.filter(c => {
@@ -1247,6 +1312,9 @@ function applyFilters() {
     if (outcomes.length && !outcomes.includes(c.outcome)) return false;
     if (authors.length && !authors.includes(c.author)) return false;
     if (doctrines.length && !doctrines.some(d => c.doctrines.includes(d))) return false;
+    if (judges.length && !judges.some(j => c.judges.includes(j))) return false;
+    if (jurisdictions.length && !jurisdictions.includes(c.jurisdiction || 'District of Columbia')) return false;
+    if (statutes.length && !(c.statutes || []).some(s => statutes.includes(s))) return false;
     if (features.includes('dissent') && !c.has_dissent) return false;
     if (features.includes('rehearing') && !c.rehearing) return false;
     if (features.includes('prose') && !c.pro_se) return false;
@@ -1260,13 +1328,13 @@ function applyFilters() {
   else if (sort === 'citations-desc') filtered.sort((a,b) => b.citations - a.citations);
   else if (sort === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
 
-  renderActiveFilters(cats, outcomes, authors, doctrines, features);
+  renderActiveFilters(cats, outcomes, authors, doctrines, features, judges, jurisdictions, statutes);
   renderStats(filtered);
   renderCases(filtered);
   renderAnalytics(filtered);
 }
 
-function renderActiveFilters(cats, outcomes, authors, doctrines, features) {
+function renderActiveFilters(cats, outcomes, authors, doctrines, features, judges, jurisdictions, statutes) {
   const pills = [];
   const fl = { dissent: 'Has Dissent', rehearing: 'Rehearing', prose: 'Pro Se', jury: 'Jury Trial', pi: 'Personal Injury' };
   cats.forEach(v => pills.push(`<span class="active-filter-pill">${v} <span class="remove-pill" onclick="uncheckFilter('category','${v}')">&times;</span></span>`));
@@ -1274,6 +1342,9 @@ function renderActiveFilters(cats, outcomes, authors, doctrines, features) {
   authors.forEach(v => pills.push(`<span class="active-filter-pill">${v} <span class="remove-pill" onclick="uncheckFilter('author','${v}')">&times;</span></span>`));
   doctrines.forEach(v => pills.push(`<span class="active-filter-pill">${v} <span class="remove-pill" onclick="uncheckFilter('doctrine','${v}')">&times;</span></span>`));
   features.forEach(v => pills.push(`<span class="active-filter-pill">${fl[v]||v} <span class="remove-pill" onclick="uncheckFilter('features','${v}')">&times;</span></span>`));
+  judges.forEach(v => pills.push(`<span class="active-filter-pill">${v} <span class="remove-pill" onclick="uncheckFilter('judge','${v}')">&times;</span></span>`));
+  jurisdictions.forEach(v => pills.push(`<span class="active-filter-pill">${v} <span class="remove-pill" onclick="uncheckFilter('jurisdiction','${v}')">&times;</span></span>`));
+  statutes.forEach(v => pills.push(`<span class="active-filter-pill">${v} <span class="remove-pill" onclick="uncheckFilter('statute','${v}')">&times;</span></span>`));
   document.getElementById('activeFilters').innerHTML = pills.join('');
 }
 
